@@ -1,5 +1,6 @@
-package com.yojulab.study_springboot.hr;
+package com.yojulab.study_springboot.hr.controller;
 
+import com.yojulab.study_springboot.hr.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
