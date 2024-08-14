@@ -6,13 +6,12 @@ import com.yojulab.study_springboot.hr.service.EmployeeService;
 import com.yojulab.study_springboot.hr.service.TimeAttendanceService;
 import com.yojulab.study_springboot.service.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -36,32 +35,37 @@ public class HRController {
         return ResponseEntity.ok().body(resultMap);
     }
 
-    @GetMapping("/readEmployee")
-    public ResponseEntity<Object> findAllEmployees() {
-        Map<String, String> rs = new HashMap<>();
-//        rs = hrService.findAllEmployees();
+    @GetMapping("/readEmployee/{sortOption}")
+    public ResponseEntity<Object> findAllEmployees(@PathVariable String sortOption) {
+        Object rs = hrService.findAllEmployees(sortOption);
+//        근무자 이름(emp_Name), 근무자 이메일(emp_Email), 부서명(dep_Name), 출근율(att_Rate)
 
         return ResponseEntity.ok().body(rs);
     }
 
-    /*@GetMapping("/readAtdByEmp/{empId}")
-    // 사원별 근태 조회
-    public ResponseEntity<Object> findEmpWorkAttendance(@PathVariable String empId) {
-        HashMap resultMap = new HashMap<>();
-        resultMap.put("empId",empId);
+    @PostMapping("/deleteEmployee/{empEmail}")
+    public ResponseEntity<Object> deleteEmployee(@PathVariable String empEmail) {
+        Object rs = hrService.deleteEmployee(empEmail);
+//        사원 삭제
+//            return ResponseEntity.ok().body("{\"status\": \"success\"}");
+        return ResponseEntity.ok().body(rs);
+    }
 
-        return ResponseEntity.ok().body(resultMap);
-    }*/
+    @GetMapping("/readAtdByEmp/{empName}")
+    // 사원별 근태 조회
+    public ResponseEntity<Object> findEmpWorkAttendance(@PathVariable String empName) {
+        Map<String, Object> map = new HashMap<>();
+        List workingList = (List) hrService.findEmpWorkAttendance(empName);
+        map.put("WorkingList", workingList);
+        HashMap totalAttend = (HashMap) hrService.findTotalAttend(empName);
+        map.put("totalAttend", totalAttend);
+        return ResponseEntity.ok().body(map);
+    }
 
     // 사원 근태 입력
-    @PostMapping("/insert/{email}/{date}")
-    public ResponseEntity<Object> insertWorkAttendanceByDate(@PathVariable String email, String date) {
-        HashMap<String, String> resultMap = new HashMap<>();
-        resultMap.put("email", email);
-        resultMap.put("date", date);
-
-        resultMap = (HashMap<String, String>) employeeService.insert(resultMap);
-
+    @PostMapping("/insert")
+    public ResponseEntity<Object> insertWorkAttendanceByDate(@PathVariable String email, @RequestParam Map params) {
+        HashMap resultMap = (HashMap) employeeService.insert(params);
         return ResponseEntity.ok().body(resultMap);
     }
 
@@ -69,8 +73,8 @@ public class HRController {
     @PostMapping("/deleteMember/{email}/{date}")
     public ResponseEntity<Object> deleteWorkAttendance(@PathVariable String email, String date) {
         HashMap resultMap = new HashMap<>();
-        resultMap.put("email",email);
-        resultMap.put("date",date);
+        resultMap.put("email", email);
+        resultMap.put("date", date);
 
         resultMap = (HashMap) timeAttendanceService.delete(resultMap);
 
