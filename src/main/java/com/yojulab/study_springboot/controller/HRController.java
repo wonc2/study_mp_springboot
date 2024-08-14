@@ -54,6 +54,4 @@ public class HRController {
 
         return ResponseEntity.ok().body("해당 날짜의 사원 근태 삭제 성공");
     }
-
-
 }

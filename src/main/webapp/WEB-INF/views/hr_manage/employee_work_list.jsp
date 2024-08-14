@@ -57,6 +57,9 @@ HashMap params=(HashMap)request.getAttribute("params");
                             <button formaction='/hr/deleteStatus<%= record.get("attend_Id") %>' formmethod="post">Del</button>
                         </td>
                     </tr>
+                    <%
+                        }
+                    %>
                     </tbody>
                 </table>
                 <hr style="border: none; border-top: 2px solid black; margin-bottom: 1rem;">
