@@ -21,19 +21,19 @@
     <form id="insertAttend" method="post" action="/insert">
         <div class="mb-3">
             <label for="employeeName" class="form-label">직원 이름</label>
-            <input type="text" class="form-control" id="employeeName" required>
+            <input type="text" class="form-control" id="employeeName" name="empName" required>
         </div>
         <div class="mb-3">
-            <label for="employeeId" class="form-label">직원 아이디</label>
-            <input type="text" class="form-control" id="employeeId" required>
+            <label for="employeeEmail" class="form-label">직원 이메일</label>
+            <input type="text" class="form-control" id="employeeEmail" name="empEmail"required>
         </div>
         <div class="mb-3">
             <label for="attendanceDate" class="form-label">날짜</label>
-            <input type="date" class="form-control" id="attendanceDate" required>
+            <input type="date" class="form-control" id="attendanceDate" name="attendanceDate" required>
         </div>
         <div class="mb-3">
             <label for="workStatus" class="form-label">근무 상태</label>
-            <select class="form-select" id="workStatus" required>
+            <select class="form-select" id="workStatus" name="workStatus" required>
                 <option value="" selected disabled>선택하세요</option>
                 <option value="출근">출근</option>
                 <option value="퇴근">퇴근</option>
