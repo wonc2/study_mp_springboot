@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Transactional
@@ -20,6 +22,10 @@ public class AttendanceService {
 
         HashMap result = new HashMap<>();
 
+//        for (Object o : result.entrySet()) {
+//            System.out.println(o);
+//        }
+
 
         result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
         return result;
@@ -29,6 +35,11 @@ public class AttendanceService {
         String sqlMapId = "Attendance.selectEmpAttendList";
 
         HashMap result = new HashMap<>();
+
+        for (Object o : result.entrySet()) {
+            System.out.println(o);
+        }
+
 
 
         result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
@@ -41,15 +52,17 @@ public class AttendanceService {
         HashMap result = new HashMap<>();
 
 
+
+
         result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
         return result;
     }
 
-    public Object insert(HashMap dataMap) {
+    public Map insert(HashMap dataMap) {
         return dataMap;
     }
 
-    public Object delete(HashMap dataMap) {
+    public Map delete(HashMap dataMap) {
         return dataMap;
     }
 }

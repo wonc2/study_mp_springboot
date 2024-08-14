@@ -30,9 +30,9 @@
     <!--  -->
     <select id="selectDays" parameterType="Map" resultType="Map">
         select e.Field as 'ename', e.Emp_PK as 'emppk', e.email as 'email',
-                COUNT(CASE WHEN t.Status = '출근' THEN 1 END) as 'attendDays',
-                COUNT(CASE WHEN t.Status = '결근' THEN 1 END) as 'absenceDays',
-                COUNT(CASE WHEN t.Status = '휴가' THEN 1 END) as 'vacationDays'
+                COUNT(CASE WHEN t.Status = '출근' THEN 1 END) as 'total_workdays',
+                COUNT(CASE WHEN t.Status = '결근' THEN 1 END) as 'total_absence',
+                COUNT(CASE WHEN t.Status = '휴가' THEN 1 END) as 'total_vacation'
         from Employees e
                  Join TimeAttendance t on e.Emp_PK = t.Emp_FK
         group by e.Field, e.Emp_PK

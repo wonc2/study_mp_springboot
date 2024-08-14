@@ -3,17 +3,18 @@ package com.yojulab.study_springboot.hr.controller;
 import com.yojulab.study_springboot.hr.service.DepartmentService;
 import com.yojulab.study_springboot.hr.service.EmployeeService;
 import com.yojulab.study_springboot.hr.service.TimeAttendanceService;
+import com.yojulab.study_springboot.service.AttendanceService;
 import com.yojulab.study_springboot.service.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
+@RequestMapping("/hr")
 public class HRController {
     @Autowired
     HRService hrService;
@@ -23,6 +24,9 @@ public class HRController {
     DepartmentService departmentService;
     @Autowired
     TimeAttendanceService timeAttendanceService;
+
+    @Autowired
+    AttendanceService attendanceService;
 
     @GetMapping("/readAtdByDept/{deptName}/{email}")
     // 부서별 근태 현황 조회
@@ -68,4 +72,11 @@ public class HRController {
 
         return ResponseEntity.ok().body(resultMap);
     }
+
+//    @GetMapping("/employee_work_list")
+//    public ResponseEntity<Object> employeeWorkList() {
+//        Map result = new HashMap<>();
+//        result = attendanceService.selectEmpAttendList(result);
+//        return ResponseEntity.ok().body(result);
+//    }
 }
