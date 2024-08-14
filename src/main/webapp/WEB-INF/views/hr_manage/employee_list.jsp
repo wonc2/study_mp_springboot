@@ -54,11 +54,13 @@
                         <td><%=record.get("emp_Name")%>></td>
                         <td><%=record.get("emp_Email")%>></td>
                         <td><%=record.get("dep_Name")%>></td>
-                        <td><%=record.get("att_Rate")%></td>
+                        <td><%=record.get("att_Rate")%>
+                        </td>
                         <td>
                             <button formaction='/hr/deleteEmp<%=record.get("emp_ID")%>' formmethod="post">Del</button>
                         </td>
                     </tr>
+                    <% } %>
                     </tbody>
                 </table>
             </div>

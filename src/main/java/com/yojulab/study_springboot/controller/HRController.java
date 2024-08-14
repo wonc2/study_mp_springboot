@@ -54,6 +54,4 @@ public class HRController {
 
         return ResponseEntity.ok().body(resultMap);
     }
-
-
 }
