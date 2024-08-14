@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class HRController {
@@ -24,6 +25,14 @@ public class HRController {
         resultMap.put("email", email);
 
         return ResponseEntity.ok().body(resultMap);
+    }
+
+    @GetMapping("/readEmployee")
+    public ResponseEntity<Object> findAllEmployees() {
+        Map<String, String> rs = new HashMap<>();
+//        rs = hrService.findAllEmployees();
+
+        return ResponseEntity.ok().body(rs);
     }
 
     /*@GetMapping("/readAtdByEmp/{empId}")
