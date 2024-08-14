@@ -76,6 +76,16 @@
                                 <a href="/r/helloWorldResponseFakeWithExcepation/C001">/helloWorldResponseFakeWithExcepation/{companyId}</a>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <a href="/hr/insertAttend">!!!!INSERT ATTEND</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/hr/employeesList">!!!!EMPLOYEES LIST</a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
