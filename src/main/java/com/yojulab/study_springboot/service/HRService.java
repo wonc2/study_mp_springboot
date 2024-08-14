@@ -12,7 +12,11 @@ public class HRService {
     @Autowired
     HRDao hrDao;
 
-    public Object findAllEmployees(String sortOption) {
+    public Object findAllEmployees(Map sortOption) {
+//        param :   data: {
+//                    option: sortOption,
+//                    month: sortMonth
+//                },
 //        근무자 이름(emp_Name), 근무자 이메일(emp_Email), 부서명(dep_Name), 출근율(att_Rate)
 //          type은 List<Map<String, String>>
         return null;
@@ -33,6 +37,10 @@ public class HRService {
     public Object findTotalAttend(String empName) {
 //        return type => Map<String, String>
 //        총 출근 일수(total_workdays) 결근 일수(total_absence) 휴가 일수(total_vacation)
+        return null;
+    }
+
+    public Object getEmpInfoByEmail(String empEmail) {
         return null;
     }
 }
