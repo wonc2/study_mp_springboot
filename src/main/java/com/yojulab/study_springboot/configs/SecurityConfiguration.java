@@ -27,6 +27,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/admin*").hasRole("ADMIN")
                         .requestMatchers("/carInfor/map/selectSearch").authenticated()
                         .requestMatchers("/carInfor/map/*").hasRole("USER")
+                        .requestMatchers("/hr/*").permitAll()
                         .anyRequest().permitAll()
                 ;
                 httpSecurity.formLogin(login -> login.loginPage("/loginForm")

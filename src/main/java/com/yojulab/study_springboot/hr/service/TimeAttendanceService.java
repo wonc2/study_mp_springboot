@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Transactional
@@ -20,7 +21,10 @@ public class TimeAttendanceService {
     }
 
 
-    public Object delete(Map dataMap) {
+    public Object delete(String attend_Id) {
+        Map<String,String> dataMap = new HashMap<>();
+        dataMap.put("attend_Id",attend_Id);
+
         String sqlMapId = "TimeAttendance.delete";
 
         Object result = sharedDao.delete(sqlMapId, dataMap);
