@@ -16,42 +16,42 @@ public class HRController {
     @Autowired
     HRService hrService;
 
-    @GetMapping("/readAtdByDept/{deptName}/{empId}")
+    @GetMapping("/readAtdByDept/{deptName}/{email}")
     // 부서별 근태 현황 조회
-    public ResponseEntity<Object> findDepartmemtWorkAttendance(@PathVariable String deptName, @PathVariable String empId) {
+    public ResponseEntity<Object> findDepartmemtWorkAttendance(@PathVariable String deptName, @PathVariable String email) {
         HashMap resultMap = new HashMap<>();
         resultMap.put("deptName", deptName);
-        resultMap.put("empId", empId);
+        resultMap.put("email", email);
 
         return ResponseEntity.ok().body(resultMap);
     }
 
-    @GetMapping("/readAtdByEmp/{empId}")
+    /*@GetMapping("/readAtdByEmp/{empId}")
     // 사원별 근태 조회
     public ResponseEntity<Object> findEmpWorkAttendance(@PathVariable String empId) {
         HashMap resultMap = new HashMap<>();
         resultMap.put("empId",empId);
 
         return ResponseEntity.ok().body(resultMap);
-    }
+    }*/
 
     // 사원 근태 입력
-    @PostMapping("/insert/{empId}/{date}")
-    public ResponseEntity<Object> insertWorkAttendanceByDate(@PathVariable String empId, String date) {
+    @PostMapping("/insert/{email}/{date}")
+    public ResponseEntity<Object> insertWorkAttendanceByDate(@PathVariable String email, String date) {
         HashMap<String, String> resultMap = new HashMap<>();
-        resultMap.put("empId", empId);
+        resultMap.put("email", email);
         resultMap.put("date", date);
 
-        return ResponseEntity.ok().body("사원 근태 입력 성공");
+        return ResponseEntity.ok().body(resultMap);
     }
 
     // 사원의 해당 날짜의 근태 삭제
-    @PostMapping("/deleteMember/{empId}/{date}")
-    public ResponseEntity<Object> deleteWorkAttendance(@PathVariable String empId, String date) {
+    @PostMapping("/deleteMember/{email}/{date}")
+    public ResponseEntity<Object> deleteWorkAttendance(@PathVariable String email, String date) {
         HashMap resultMap = new HashMap<>();
-        resultMap.put("empId",empId);
+        resultMap.put("email",email);
         resultMap.put("date",date);
 
-        return ResponseEntity.ok().body("해당 날짜의 사원 근태 삭제 성공");
+        return ResponseEntity.ok().body(resultMap);
     }
 }
