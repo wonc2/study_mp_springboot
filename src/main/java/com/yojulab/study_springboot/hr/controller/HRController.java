@@ -40,6 +40,9 @@ public class HRController {
     }
 
 
+    @Autowired
+    AttendanceService attendanceService;
+
     @GetMapping("/readAtdByDept/{deptName}/{email}")
     // 부서별 근태 현황 조회
     public ResponseEntity<Object> findDepartmemtWorkAttendance(@PathVariable String deptName, @PathVariable String email) {
@@ -93,5 +96,4 @@ public class HRController {
 
         return ResponseEntity.ok().body(resultMap);
     }
-
 }
