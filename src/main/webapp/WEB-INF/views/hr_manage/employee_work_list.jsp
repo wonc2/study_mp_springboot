@@ -13,11 +13,11 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/commons/header.jsp" %>
-<% List result= (List) request.getAttribute("result");
-// 근태 pk (attend_Id), 근태 상태(status), 날짜(workday)
-HashMap params=(HashMap)request.getAttribute("params");
-// 총 출근 일수(total_workdays) 결근 일수(total_absence) 휴가 일수(total_vacation)
-%>
+<%--<% List result= (List) request.getAttribute("result");--%>
+<%--// 근태 pk (attend_Id), 근태 상태(status), 날짜(workday)--%>
+<%--HashMap params=(HashMap)request.getAttribute("params");--%>
+<%--// 총 출근 일수(total_workdays) 결근 일수(total_absence) 휴가 일수(total_vacation)--%>
+
 
 <form action="" method="">
     <div class="container mt-4">
@@ -63,7 +63,7 @@ HashMap params=(HashMap)request.getAttribute("params");
                     </tbody>
                 </table>
                 <hr style="border: none; border-top: 2px solid black; margin-bottom: 1rem;">
-                <div>
+                <div class="totalWorkParams">
                     <h5>총 출근 일수: <%=params.get("total_workdays")%></h5>
                     <h5>총 결근 일수: <%=params.get("total_absence")%></h5>
                     <h5>총 휴가 일수: <%=params.get("total_vacation")%></h5>

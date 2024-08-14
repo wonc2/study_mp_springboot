@@ -35,6 +35,18 @@
                         <option value="department">부서별</option>
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label for="sortMonth" class="form-label">정렬 옵션:</label>
+                    <select class="form-select" id="sortMonth">
+                        <%
+                            for(int i=1; i<13; i++) {
+                        %>
+                        <option value="month+${i}"><%=i%></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                </div>
                 <table class="table">
                     <thead>
                     <tr>
@@ -76,13 +88,13 @@
                     employeeList.empty();
                     $.each(data, function (index, record) {
 
-                        var row = `<tr>
+                        var row = `<tr data-emp-name="${record.emp_Name}">
                                     <td>${record.emp_Name}</td>
                                     <td>${record.emp_Email}</td>
                                     <td>${record.dep_Name}</td>
                                     <td>${record.att_Rate}</td>
                                     <td>
-                                        <form action='/hr/deleteEmp/${record.emp_ID}' method='post' style='display:inline;'>
+                                        <form action='/deleteEmployee/${record.emp_Email}' method='post' style='display:inline;'>
                                         <button type='submit' class='btn btn-danger'>Del</button>
                                      </form>
                                     </td>
@@ -93,6 +105,10 @@
                 error: function (error) {
                     console.error("ajax err: ", error);
                 }
+            });
+            $('#employeeList').on('click','tr', function () {
+                let empName = $(this).data('emp-name');
+                window.location.href=`/readAtdByEmp/`+empName;
             });
         }
     });
