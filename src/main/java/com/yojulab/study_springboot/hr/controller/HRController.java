@@ -29,43 +29,22 @@ public class HRController {
     @Autowired
     AttendanceService attendanceService;
 
-    @GetMapping({ "/hr/insertAttend" }) // 관리자 접속하는 곳
-    public ModelAndView insertAttend(ModelAndView modelAndView) {
-        String viewName = "/WEB-INF/views/hr_manage/insert_form.jsp";
-        modelAndView.setViewName(viewName);
-        return modelAndView;
-    }
-    @GetMapping({ "/hr/employeesList" }) // 관리자 접속하는 곳
-    public ModelAndView employeesList(ModelAndView modelAndView) {
-        String viewName = "/WEB-INF/views/hr_manage/employee_list.jsp";
-        modelAndView.setViewName(viewName);
-        return modelAndView;
-    }
 
-    @GetMapping("/readAtdByDept/{deptName}/{email}")
-    // 부서별 근태 현황 조회
-    public ResponseEntity<Object> findDepartmemtWorkAttendance(@PathVariable String deptName, @PathVariable String email) {
-        HashMap resultMap = new HashMap<>();
-        resultMap.put("deptName", deptName);
-        resultMap.put("email", email);
-
-        resultMap = (HashMap) departmentService.insert(resultMap);
-
-        return ResponseEntity.ok().body(resultMap);
-    }
-
+//    모든 직원 list
     @GetMapping("/readEmployee")
-    public ResponseEntity<Object> findAllEmployees(@PathVariable String sortOption, @RequestParam Map params) {
+    public ResponseEntity<Object> findAllEmployees(@RequestParam Map params) {
+//        params 에 몇 월인지, 무슨 조건인지 달려있음
+
         Object rs = hrService.findAllEmployees(params);
 //        근무자 이름(emp_Name), 근무자 이메일(emp_Email), 부서명(dep_Name), 출근율(att_Rate)
 
         return ResponseEntity.ok().body(rs);
     }
 
+    //        사원 삭제
     @PostMapping("/deleteEmployee/{empEmail}")
     public ResponseEntity<Object> deleteEmployee(@PathVariable String empEmail) {
         Object rs = hrService.deleteEmployee(empEmail);
-//        사원 삭제
 //            return ResponseEntity.ok().body("{\"status\": \"success\"}");
         return ResponseEntity.ok().body(rs);
     }

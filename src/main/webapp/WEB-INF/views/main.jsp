@@ -78,12 +78,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="/hr/insertAttend">!!!!INSERT ATTEND</a>
+                                <a href="/hr/insert">!!!!INSERT ATTEND</a>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a href="/hr/employeesList">!!!!EMPLOYEES LIST</a>
+                                <a href="/hr/emplist">!!!!EMPLOYEES LIST</a>
                             </td>
                         </tr>
                     </tbody>
