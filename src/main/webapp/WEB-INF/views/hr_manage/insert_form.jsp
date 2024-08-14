@@ -8,13 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <%@include file="/WEB-INF/views/commons/header.jsp"%>
 <div class="container mt-5">
     <h2 class="mb-4">직원 근태 기록</h2>
-    <form id="insertAttend" method="post" onsubmit="insertAttend()">
+    <form id="insertAttend" method="post" action="/insert">
         <div class="mb-3">
             <label for="employeeName" class="form-label">직원 이름</label>
             <input type="text" class="form-control" id="employeeName" required>
@@ -40,12 +44,7 @@
     </form>
 </div>
 <%@include file="/WEB-INF/views/commons/footer.jsp"%>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    function insertAttend() {
-        var employeeEmail = document.getElementById("email").value;
-        document.getElementById("insertAttend").action = '/insert/'+employeeEmail;
-    }
-</script>
 </body>
 </html>

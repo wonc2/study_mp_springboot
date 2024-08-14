@@ -7,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<html>
 <body lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
 <%@include file="/WEB-INF/views/commons/header.jsp" %>
 <%--<% List result = (List) request.getAttribute("result"); %>--%>
 <%--result에 담겨야 할 것 : 근무자 이름(emp_Name), 근무자 이메일(emp_Email), 부서명(dep_Name), 출근율(att_Rate)
@@ -39,13 +38,17 @@
                     <label for="sortMonth" class="form-label">정렬 옵션:</label>
                     <select class="form-select" id="sortMonth">
                         <%
-                            for(int i=1; i<13; i++) {
+                            for (int i = 1; i < 13; i++) {
                         %>
-                        <option value="month+${i}"><%=i%></option>
+                        <option value="month+${i}"><%=i%>
+                        </option>
                         <%
                             }
                         %>
                     </select>
+                </div>
+                <div class="mb-3">
+                    <button id="selectButton" class="btn btn-primary">조회</button>
                 </div>
                 <table class="table">
                     <thead>
@@ -73,22 +76,27 @@
     $(document).ready(function () {
         loadEmployeeData();
 
-        $('#sortOption').change(function () {
-            let sortOption = $(this).val();
-            loadEmployeeData(sortOption);
+        $('#selectButton').on('click', function () {
+            const sortOption = $('#sortOption').val();
+            const sortMonth = $('#sortMonth').val();
+            loadEmployeeData(sortOption, sortMonth);
         });
 
-        function loadEmployeeData(sortOption) {
+        function loadEmployeeData(sortOption, sortMonth) {
             $.ajax({
-                url: '/readEmployee/'+sortOption,
+                url: '/readEmployee',
                 method: 'GET',
-                dataType: 'json',
+                data: {
+                    option: sortOption,
+                    month: sortMonth
+                },
                 success: function (data) {
                     let employeeList = $('#employeeList');
                     employeeList.empty();
                     $.each(data, function (index, record) {
-
-                        var row = `<tr data-emp-name="${record.emp_Name}">
+                        console.log("record : ", record);
+                        console.log("index : ", index);
+                        var row = `<tr data-emp-name="${record.emp_Name}" data-dep-name="${record.dep_Name}">
                                     <td>${record.emp_Name}</td>
                                     <td>${record.emp_Email}</td>
                                     <td>${record.dep_Name}</td>
@@ -106,12 +114,13 @@
                     console.error("ajax err: ", error);
                 }
             });
-            $('#employeeList').on('click','tr', function () {
+            $('#employeeList').on('click', 'tr', function () {
                 let empName = $(this).data('emp-name');
-                window.location.href=`/readAtdByEmp/`+empName;
-            });
+                let depName = $(this).data('dep-name');
+                window.location.href = `/readAtdByEmp/${empName}/${depName}`;            });
         }
     });
 </script>
-</body>
 </html>
+
+</body>
