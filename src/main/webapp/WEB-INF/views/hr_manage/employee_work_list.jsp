@@ -13,10 +13,12 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/commons/header.jsp" %>
-<%--<% List result= (List) request.getAttribute("result");--%>
-<%--// 근태 pk (attend_Id), 근태 상태(status), 날짜(workday)--%>
-<%--HashMap params=(HashMap)request.getAttribute("params");--%>
-<%--// 총 출근 일수(total_workdays) 결근 일수(total_absence) 휴가 일수(total_vacation)--%>
+<% List result = (List) request.getAttribute("workingList");
+// 근태 pk (attend_Id), 근태 상태(status), 날짜(workday)e
+    HashMap params = (HashMap) request.getAttribute("totalMap");
+    HashMap userInfo = (HashMap) request.getAttribute("empInfo");
+%>
+// 총 출근 일수(total_workdays) 결근 일수(total_absence) 휴가 일수(total_vacation)
 
 
 <form action="" method="">
@@ -25,8 +27,8 @@
             <div class="col-md-8">
                 <h1>Work Status List</h1>
                 <div class="mb-3 mt-3">
-                    <h5>Name: 김다영</h5>
-                    <h5>Department: 부서1</h5>
+                    <h5>Name: <%=userInfo.get("empName")%></h5>
+                    <h5>Department: <%=userInfo.get("depName")%></h5>
                 </div>
                 <div class="mb-3">
                     <label for="sortOption" class="form-label">정렬 옵션:</label>
@@ -47,14 +49,16 @@
                     </thead>
                     <tbody id="workStatusTable">
                     <%
-                        for(Object obj : result) {
+                        for (Object obj : result) {
                             HashMap record = (HashMap) obj;
                     %>
                     <tr>
                         <td><%= record.get("workday")%>></td>
-                        <td><%= record.get("status")%></td>
+                        <td><%= record.get("status")%>
+                        </td>
                         <td>
-                            <button formaction='/hr/deleteStatus<%= record.get("attend_Id") %>' formmethod="post">Del</button>
+                            <button formaction='/hr/deleteStatus<%= record.get("attend_Id") %>' formmethod="post">Del
+                            </button>
                         </td>
                     </tr>
                     <%
@@ -64,9 +68,12 @@
                 </table>
                 <hr style="border: none; border-top: 2px solid black; margin-bottom: 1rem;">
                 <div class="totalWorkParams">
-                    <h5>총 출근 일수: <%=params.get("total_workdays")%></h5>
-                    <h5>총 결근 일수: <%=params.get("total_absence")%></h5>
-                    <h5>총 휴가 일수: <%=params.get("total_vacation")%></h5>
+                    <h5>총 출근 일수: <%=params.get("total_workdays")%>
+                    </h5>
+                    <h5>총 결근 일수: <%=params.get("total_absence")%>
+                    </h5>
+                    <h5>총 휴가 일수: <%=params.get("total_vacation")%>
+                    </h5>
                 </div>
             </div>
         </div>
