@@ -22,6 +22,10 @@ public class AttendanceService {
 
         HashMap result = new HashMap<>();
 
+//        for (Object o : result.entrySet()) {
+//            System.out.println(o);
+//        }
+
 
         result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
         return result;
