@@ -10,15 +10,32 @@
 
     </delete>
 
-    <!-- 리스트 맵으로 가져오기 -->
+    <!-- 부서별 리스트 -->
     <select id="selectListByDepartment" parameterType="Map" resultType="Map">
-        select e.field as 'ename', e.email,
-               d.Field as 'dname', Round((COUNT(CASE WHEN t.Status = '출근' THEN 1 END) / 24) * 100, 1) AS 'attendanceRate'
+        select e.field as 'ename', e.email, d.Field as 'dname', e.Emp_PK as 'emppk',
+                Round((COUNT(CASE WHEN t.Status = '출근' THEN 1 END)/24)*100, 1) AS 'attendanceRate'
         from Employees e
                  join Department d on e.Dep_FK = d.Dep_PK
                  join TimeAttendance t on e.Emp_PK = t.Emp_FK
-        Group by e.field, e.email, d.Field
+        Group by e.field, e.email, d.Field, e.Emp_PK
     </select>
 
+    <!-- 직원별 근태 PK, 근태상태, 날짜 -->
+    <select id="selectEmpAttendList" parameterType="Map" resultType="Map">
+        select t.TA_PK as 'tapk', t.Status as 'status', Workday as 'workday', email as 'email'
+        from Employees e
+                 join TimeAttendance t on e.Emp_PK = t.Emp_FK
+    </select>
+
+    <!--  -->
+    <select id="selectDays" parameterType="Map" resultType="Map">
+        select e.Field as 'ename', e.Emp_PK as 'emppk', e.email as 'email',
+                COUNT(CASE WHEN t.Status = '출근' THEN 1 END) as 'attendDays',
+                COUNT(CASE WHEN t.Status = '결근' THEN 1 END) as 'absenceDays',
+                COUNT(CASE WHEN t.Status = '휴가' THEN 1 END) as 'vacationDays'
+        from Employees e
+                 Join TimeAttendance t on e.Emp_PK = t.Emp_FK
+        group by e.Field, e.Emp_PK
+    </select>
 
 </mapper>

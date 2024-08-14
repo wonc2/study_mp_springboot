@@ -19,7 +19,11 @@ public class AttendanceService {
         String sqlMapId = "Attendance.selectListByDepartment";
 
         HashMap result = new HashMap<>();
+
+
         result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
         return result;
     }
+
+
 }
