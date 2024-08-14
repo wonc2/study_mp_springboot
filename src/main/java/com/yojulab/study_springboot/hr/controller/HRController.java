@@ -3,6 +3,7 @@ package com.yojulab.study_springboot.hr.controller;
 import com.yojulab.study_springboot.hr.service.DepartmentService;
 import com.yojulab.study_springboot.hr.service.EmployeeService;
 import com.yojulab.study_springboot.hr.service.TimeAttendanceService;
+import com.yojulab.study_springboot.service.AttendanceService;
 import com.yojulab.study_springboot.service.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,8 @@ public class HRController {
     DepartmentService departmentService;
     @Autowired
     TimeAttendanceService timeAttendanceService;
+    @Autowired
+    AttendanceService attendanceService;
 
     @GetMapping({ "/hr/insertAttend" }) // 관리자 접속하는 곳
     public ModelAndView insertAttend(ModelAndView modelAndView) {
@@ -38,10 +41,6 @@ public class HRController {
         modelAndView.setViewName(viewName);
         return modelAndView;
     }
-
-
-    @Autowired
-    AttendanceService attendanceService;
 
     @GetMapping("/readAtdByDept/{deptName}/{email}")
     // 부서별 근태 현황 조회
