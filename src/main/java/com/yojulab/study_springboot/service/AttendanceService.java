@@ -25,5 +25,31 @@ public class AttendanceService {
         return result;
     }
 
+    public Map selectEmpAttendList(Map dataMap) {
+        String sqlMapId = "Attendance.selectEmpAttendList";
 
+        HashMap result = new HashMap<>();
+
+
+        result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
+        return result;
+    }
+
+    public Map selectDays(Map dataMap) {
+        String sqlMapId = "Attendance.selectDays";
+
+        HashMap result = new HashMap<>();
+
+
+        result.put("resultList", sharedDao.getList(sqlMapId, dataMap));
+        return result;
+    }
+
+    public Object insert(HashMap dataMap) {
+        return dataMap;
+    }
+
+    public Object delete(HashMap dataMap) {
+        return dataMap;
+    }
 }

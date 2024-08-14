@@ -1,6 +1,5 @@
 package com.yojulab.study_springboot.hr.controller;
 
-import com.yojulab.study_springboot.hr.service.AuthsService;
 import com.yojulab.study_springboot.hr.service.DepartmentService;
 import com.yojulab.study_springboot.hr.service.EmployeeService;
 import com.yojulab.study_springboot.hr.service.TimeAttendanceService;
@@ -18,9 +17,11 @@ import java.util.HashMap;
 public class HRController {
     @Autowired
     HRService hrService;
+    @Autowired
     EmployeeService employeeService;
-    AuthsService authsService;
+    @Autowired
     DepartmentService departmentService;
+    @Autowired
     TimeAttendanceService timeAttendanceService;
 
     @GetMapping("/readAtdByDept/{deptName}/{email}")
