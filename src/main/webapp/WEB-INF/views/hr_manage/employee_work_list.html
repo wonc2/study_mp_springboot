@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<form action="" method="">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Work Status List</h1>
+                <div class="mb-3 mt-3">
+                    <h5>Name: 김다영</h5>
+                    <h5>Department: 부서1</h5>
+                </div>
+                <div class="mb-3">
+                    <label for="sortOption" class="form-label">정렬 옵션:</label>
+                    <select class="form-select" id="sortOption">
+                        <option value="month" selected>8월</option>
+                        <option value="month2">7월</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">조회</button>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>del</th>
+                    </tr>
+                    </thead>
+                    <tbody id="workStatusTable">
+                    <tr onclick="">
+                        <td>2024-08-01</td>
+                        <td>출근</td>
+                        <td><button>del</button></td>
+                    </tr>
+                    <tr onclick="">
+                        <td>2024-08-01</td>
+                        <td>출근</td>
+                        <td><button>del</button></td>
+                    </tr>
+                    <tr onclick="">
+                        <td>2024-08-01</td>
+                        <td>출근</td>
+                        <td><button>del</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <hr style="border: none; border-top: 2px solid black; margin-bottom: 1rem;">                <div>
+                    <h5>총 출근 일수: 3일</h5>
+                    <h5>총 결근 일수: 0일</h5>
+                    <h5>총 휴가 일수: 0일</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
