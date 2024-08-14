@@ -31,15 +31,10 @@ public class HrManageController {
 //        modelAndView.setViewName("/WEB-INF/views/hr_manage/employee_work_list.jsp");
 //        return modelAndView;
 //    }
-// =========> emplist에서 컬럼 누르면 이동
+// =========>>> emplist에서 컬럼 누르면 이동
     @GetMapping("/emplist")
     public ModelAndView emplist(ModelAndView modelAndView) {
-//        Map<String, Object> map = new HashMap<>();
-//        List result = (List) attendanceService.selectDays(map).get("resultList");
 //      값 설정 x 기본은 전체 직원 조회
-
-//        modelAndView.addObject("result", result);
-
         modelAndView.setViewName("/WEB-INF/views/hr_manage/employee_list.jsp");
         return modelAndView;
     }

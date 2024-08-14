@@ -37,10 +37,11 @@
                 <div class="mb-3">
                     <label for="sortMonth" class="form-label">정렬 옵션:</label>
                     <select class="form-select" id="sortMonth">
+                        <option value="all" selected>전체</option>
                         <%
                             for (int i = 1; i < 13; i++) {
                         %>
-                        <option value="month+${i}"><%=i%>
+                        <option value="<%=i%>"><%=i%>
                         </option>
                         <%
                             }
@@ -83,6 +84,10 @@
         });
 
         function loadEmployeeData(sortOption, sortMonth) {
+            if(sortOption===undefined||sortMonth===undefined){
+                sortOption = "employee";
+                sortMonth = "all";
+            }
             $.ajax({
                 url: '/readEmployee',
                 method: 'GET',
