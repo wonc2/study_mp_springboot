@@ -9,7 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <%@include file="/WEB-INF/views/commons/header.jsp" %>
@@ -17,8 +21,9 @@
 // 근태 pk (attend_Id), 근태 상태(status), 날짜(workday)e
     HashMap params = (HashMap) request.getAttribute("totalMap");
     HashMap userInfo = (HashMap) request.getAttribute("empInfo");
+
+    // 총 출근 일수(total_workdays) 결근 일수(total_absence) 휴가 일수(total_vacation)
 %>
-// 총 출근 일수(total_workdays) 결근 일수(total_absence) 휴가 일수(total_vacation)
 
 
 <form action="" method="">
@@ -32,9 +37,9 @@
                 </div>
                 <div class="mb-3">
                     <label for="sortOption" class="form-label">정렬 옵션:</label>
-                    <select class="form-select" id="sortOption">
-                        <option value="month" selected>8월</option>
-                        <option value="month2">7월</option>
+                    <select class="form-select" id="sortOption" name="month">
+                        <option value="08" selected>8월</option>
+                        <option value="07">7월</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">조회</button>
@@ -53,11 +58,11 @@
                             HashMap record = (HashMap) obj;
                     %>
                     <tr>
-                        <td><%= record.get("workday")%>></td>
+                        <td><%= record.get("workday")%></td>
                         <td><%= record.get("status")%>
                         </td>
                         <td>
-                            <button formaction='/hr/deleteStatus<%= record.get("attend_Id") %>' formmethod="post">Del
+                            <button formaction='/deleteWorkAttendance/<%= record.get("attend_Id") %>' formmethod="post">Del
                             </button>
                         </td>
                     </tr>

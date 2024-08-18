@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Attendance">
-<!--    &lt;!&ndash; 입력 &ndash;&gt;-->
-<!--    <insert id="insert" parameterType="Map">-->
+<!--&lt;!&ndash;    &lt;!&ndash; 입력 &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <insert id="insert" parameterType="Map">&ndash;&gt;-->
 
-<!--    </insert>-->
-<!--    &lt;!&ndash; 삭제 &ndash;&gt;-->
-<!--    <delete id="delete" parameterType="Map">-->
+<!--&lt;!&ndash;    </insert>&ndash;&gt;-->
+<!--&lt;!&ndash;    &lt;!&ndash; 삭제 &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <delete id="delete" parameterType="Map">&ndash;&gt;-->
 
-<!--    </delete>-->
+<!--&lt;!&ndash;    </delete>&ndash;&gt;-->
 
-    <!-- 부서별 리스트 -->
-    <select id="selectListByDepartment" parameterType="Map" resultType="Map">
-        select e.field as 'emp_Name', e.email as 'emp_Email', d.Field as 'dep_Name', e.Emp_PK as 'emp_Id',
-                Round((COUNT(CASE WHEN t.Status = '출근' THEN 1 END)/24)*100, 1) AS 'att_Rate'
-        from Employees e
-                 join Department d on e.Dep_FK = d.Dep_PK
-                 join TimeAttendance t on e.Emp_PK = t.Emp_FK
-        Group by e.field, e.email, d.Field, e.Emp_PK
-    </select>
+<!--    &lt;!&ndash; 부서별 리스트 &ndash;&gt;-->
+<!--    <select id="selectListByDepartment" parameterType="Map" resultType="Map">-->
+<!--        select e.field as 'emp_Name', e.email as 'emp_Email', d.Field as 'dep_Name', e.Emp_PK as 'emp_Id',-->
+<!--                Round((COUNT(CASE WHEN t.Status = '출근' THEN 1 END)/24)*100, 1) AS 'att_Rate'-->
+<!--        from Employees e-->
+<!--                 join Department d on e.Dep_FK = d.Dep_PK-->
+<!--                 join TimeAttendance t on e.Emp_PK = t.Emp_FK-->
+<!--        Group by e.field, e.email, d.Field, e.Emp_PK-->
+<!--    </select>-->
 
-    <!-- 직원별 근태 PK, 근태상태, 날짜 -->
-    <select id="selectEmpAttendList" parameterType="Map" resultType="Map">
-        select t.TA_PK as 'tapk', t.Status as 'status', Workday as 'workday', email as 'email'
-        from Employees e
-                 join TimeAttendance t on e.Emp_PK = t.Emp_FK
-    </select>
+<!--    &lt;!&ndash; 직원별 근태 PK, 근태상태, 날짜 &ndash;&gt;-->
+<!--    <select id="selectEmpAttendList" parameterType="Map" resultType="Map">-->
+<!--        select t.TA_PK as 'tapk', t.Status as 'status', Workday as 'workday', email as 'email'-->
+<!--        from Employees e-->
+<!--                 join TimeAttendance t on e.Emp_PK = t.Emp_FK-->
+<!--    </select>-->
 
-    <!--  -->
-    <select id="selectDays" parameterType="Map" resultType="Map">
-        select e.Field as 'ename', e.Emp_PK as 'emppk', e.email as 'email',
-                COUNT(CASE WHEN t.Status = '출근' THEN 1 END) as 'total_workdays',
-                COUNT(CASE WHEN t.Status = '결근' THEN 1 END) as 'total_absence',
-                COUNT(CASE WHEN t.Status = '휴가' THEN 1 END) as 'total_vacation'
-        from Employees e
-                 Join TimeAttendance t on e.Emp_PK = t.Emp_FK
-        group by e.Field, e.Emp_PK
-    </select>
+<!--    &lt;!&ndash;  &ndash;&gt;-->
+<!--    <select id="selectDays" parameterType="Map" resultType="Map">-->
+<!--        select e.Field as 'ename', e.Emp_PK as 'emppk', e.email as 'email',-->
+<!--                COUNT(CASE WHEN t.Status = '출근' THEN 1 END) as 'total_workdays',-->
+<!--                COUNT(CASE WHEN t.Status = '결근' THEN 1 END) as 'total_absence',-->
+<!--                COUNT(CASE WHEN t.Status = '휴가' THEN 1 END) as 'total_vacation'-->
+<!--        from Employees e-->
+<!--                 Join TimeAttendance t on e.Emp_PK = t.Emp_FK-->
+<!--        group by e.Field, e.Emp_PK-->
+<!--    </select>-->
 
 </mapper>

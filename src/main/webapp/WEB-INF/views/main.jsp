@@ -41,41 +41,41 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <a href="/r/helloWorld">/helloWorld</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/r/helloWorldGetRequest/yojulab/U-01">/helloWorldGetRequest/{name}/{Id}</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/r/helloWorldResponse/1/10/1">/helloWorldResponse/{currentPage}/{perPage}/{SN}</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/r/helloWorldResponseList/1/10/1">/helloWorldResponseList/{currentPage}/{perPage}/{SN}</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/r/helloWorldResponseWithService/1/10/1">/helloWorldResponseWithService/{currentPage}/{perPage}/{SN}</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/r/helloWorldResponseFake/C001">/helloWorldResponseFake/{companyId}</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="/r/helloWorldResponseFakeWithExcepation/C001">/helloWorldResponseFakeWithExcepation/{companyId}</a>
-                            </td>
-                        </tr>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <a href="/r/helloWorld">/helloWorld</a>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <a href="/r/helloWorldGetRequest/yojulab/U-01">/helloWorldGetRequest/{name}/{Id}</a>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <a href="/r/helloWorldResponse/1/10/1">/helloWorldResponse/{currentPage}/{perPage}/{SN}</a>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <a href="/r/helloWorldResponseList/1/10/1">/helloWorldResponseList/{currentPage}/{perPage}/{SN}</a>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <a href="/r/helloWorldResponseWithService/1/10/1">/helloWorldResponseWithService/{currentPage}/{perPage}/{SN}</a>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <a href="/r/helloWorldResponseFake/C001">/helloWorldResponseFake/{companyId}</a>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                        <tr>--%>
+<%--                            <td>--%>
+<%--                                <a href="/r/helloWorldResponseFakeWithExcepation/C001">/helloWorldResponseFakeWithExcepation/{companyId}</a>--%>
+<%--                            </td>--%>
+<%--                        </tr>--%>
                         <tr>
                             <td>
                                 <a href="/hr/insert">!!!!INSERT ATTEND</a>

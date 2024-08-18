@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HrAttendMapper">
+    <delete id="deleteEmp" parameterType="String">
+        DELETE a
+        FROM attend a
+        JOIN employee e ON a.emp_id = e.emp_id
+        WHERE e.emp_email = #{email}
+    </delete>
+
+    <delete id="delete" parameterType="String">
+        DELETE FROM attend WHERE attend_id = #{attend_Id}
+    </delete>
+
+    <insert id="insert" parameterType="Map">
+        INSERT INTO
+            `attend` (`emp_id`, `workdate`, `status`)
+        VALUES
+            (#{empId}, #{attendanceDate}, #{workStatus})
+    </insert>
+</mapper>

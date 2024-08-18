@@ -8,7 +8,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<body lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+<body lang="en">
 <%@include file="/WEB-INF/views/commons/header.jsp" %>
 <%--<% List result = (List) request.getAttribute("result"); %>--%>
 <%--result에 담겨야 할 것 : 근무자 이름(emp_Name), 근무자 이메일(emp_Email), 부서명(dep_Name), 출근율(att_Rate)
@@ -77,7 +77,8 @@
     $(document).ready(function () {
         loadEmployeeData();
 
-        $('#selectButton').on('click', function () {
+        $('#selectButton').on('click', function (event) {
+            event.preventDefault();  // 새로고침 방지
             const sortOption = $('#sortOption').val();
             const sortMonth = $('#sortMonth').val();
             loadEmployeeData(sortOption, sortMonth);
@@ -101,18 +102,19 @@
                     $.each(data, function (index, record) {
                         console.log("record : ", record);
                         console.log("index : ", index);
-                        var row = `<tr data-emp-name="${record.emp_Name}" data-dep-name="${record.dep_Name}">
-                                    <td>${record.emp_Name}</td>
-                                    <td>${record.emp_Email}</td>
-                                    <td>${record.dep_Name}</td>
-                                    <td>${record.att_Rate}</td>
+                        var row = `<tr data-emp-email="\${record.emp_Email}">
+                                    <td>\${record.emp_Name}</td>
+                                    <td>\${record.emp_Email}</td>
+                                    <td>\${record.dep_Name}</td>
+                                    <td>\${record.att_Rate}</td>
                                     <td>
-                                        <form action='/deleteEmployee/${record.emp_Email}' method='post' style='display:inline;'>
+                                        <form action='/deleteEmployee/\${record.emp_Email}' method='post' style='display:inline;'>
                                         <button type='submit' class='btn btn-danger'>Del</button>
                                      </form>
                                     </td>
                                         </tr>`;
                         employeeList.append(row);
+                        console.log(employeeList.html());
                     });
                 },
                 error: function (error) {
@@ -120,12 +122,13 @@
                 }
             });
             $('#employeeList').on('click', 'tr', function () {
-                let empName = $(this).data('emp-name');
-                let depName = $(this).data('dep-name');
-                window.location.href = `/readAtdByEmp/${empName}/${depName}`;            });
+                let empEmail = $(this).data('emp-email');
+                // let depName = $(this).data('dep-name');
+                window.location.href = `readAtdByEmp/\${empEmail}`;
+            });
         }
     });
 </script>
-</html>
 
 </body>
+</html>

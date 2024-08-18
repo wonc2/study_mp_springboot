@@ -25,7 +25,7 @@
         </div>
         <div class="mb-3">
             <label for="employeeEmail" class="form-label">직원 이메일</label>
-            <input type="text" class="form-control" id="employeeEmail" name="empEmail"required>
+            <input type="text" class="form-control" id="employeeEmail" name="empEmail" required>
         </div>
         <div class="mb-3">
             <label for="attendanceDate" class="form-label">날짜</label>
@@ -36,8 +36,8 @@
             <select class="form-select" id="workStatus" name="workStatus" required>
                 <option value="" selected disabled>선택하세요</option>
                 <option value="출근">출근</option>
-                <option value="퇴근">퇴근</option>
                 <option value="휴가">휴가</option>
+                <option value="결근">결근</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">제출</button>

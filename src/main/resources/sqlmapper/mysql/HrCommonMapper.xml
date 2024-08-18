@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HrCommonMapper">
+    <select id="findAllEmployees" resultType="Map" parameterType="Map">
+        SELECT
+            e.emp_name AS 'emp_Name',
+            e.emp_email AS 'emp_Email',
+            d.dep_name AS 'dep_Name',
+            ROUND((COUNT(CASE WHEN t.status = '출근' THEN 1 END) / COUNT(t.status)) * 100, 1) AS 'att_Rate'
+        FROM
+            employee e
+        JOIN
+        <choose>
+            <when test="month == 'all'">
+            attend t ON e.emp_id = t.emp_id
+            </when>
+            <otherwise>
+            attend t ON e.emp_id = t.emp_id AND t.workdate LIKE CONCAT('2024-', LPAD(#{month}, 2, '0'), '%')
+            </otherwise>
+        </choose>
+        JOIN
+            department d ON e.dep_id = d.dep_id
+        GROUP BY
+            e.emp_name,
+            e.emp_email,
+            d.dep_name
+        ORDER BY
+        <choose>
+            <when test="option == 'employee'">
+             e.emp_name
+            </when>
+            <when test="option == 'department'">
+             d.dep_name
+            </when>
+        </choose>
+    </select>
+
+    <select id="findEmpWorkAttendance" resultType="Map" parameterType="Map">
+        select
+            t.attend_id as 'attend_Id', t.status, t.workdate as 'workday'
+        from
+            attend t
+        join
+            employee e on e.emp_id = t.emp_id
+        where
+            emp_email like #{empEmail} and
+            t.workdate like CONCAT('2024-', #{month}, '%')
+    </select>
+
+    <select id="findTotalAttend" resultType="Map" parameterType="Map">
+        select
+            COUNT(CASE WHEN t.status = '출근' THEN 1 END) as 'total_workdays',
+            COUNT(CASE WHEN t.status = '결근' THEN 1 END) as 'total_absence',
+            COUNT(CASE WHEN t.status = '휴가' THEN 1 END) as 'total_vacation'
+        from
+            employee e
+        Join
+            attend t on e.emp_id = t.emp_id
+        where
+            emp_email like #{empEmail} and
+            t.workdate like CONCAT('2024-', #{month}, '%')
+    </select>
+
+    <select id="getEmpInfoByEmail" resultType="Map" parameterType="String">
+        select
+            e.emp_name as 'empName', d.dep_name as 'depName', e.emp_email as 'empEmail'
+        from
+            employee e
+        join
+            department d on e.dep_id = d.dep_id
+        where
+            emp_email like #{empEmail}
+    </select>
+
+    <select id="getEmpIdByEmail" resultType="String" parameterType="String">
+        select emp_id from employee where emp_email like #{empEmail}
+    </select>
+</mapper>
